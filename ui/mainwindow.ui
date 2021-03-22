@@ -19,12 +19,6 @@
     <height>444</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>755</width>
-    <height>444</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Converty</string>
   </property>
@@ -35,182 +29,212 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>10</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;&lt; Load Folder</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>60</y>
-      <width>151</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;&lt; Load File</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>290</y>
-      <width>171</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Convert!</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>140</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>PNG</string>
-     </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="QPushButton" name="clearList">
+      <property name="maximumSize">
+       <size>
+        <width>147</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Clear List</string>
+      </property>
+     </widget>
     </item>
-    <item>
-     <property name="text">
-      <string>JPG</string>
-     </property>
+    <item row="10" column="5">
+     <widget class="QPushButton" name="setOutput">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Set Output Path..</string>
+      </property>
+     </widget>
     </item>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>120</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Convert to...</string>
-    </property>
-   </widget>
-   <widget class="QTreeWidget" name="treeWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>531</width>
-      <height>351</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="sortingEnabled">
-     <bool>true</bool>
-    </property>
-    <property name="headerHidden">
-     <bool>true</bool>
-    </property>
-    <column>
-     <property name="text">
-      <string>Null</string>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-    </column>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>180</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Set Output Path</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>240</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>17</x>
-      <y>370</y>
-      <width>571</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-    <property name="textVisible">
-     <bool>true</bool>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <property name="invertedAppearance">
-     <bool>false</bool>
-    </property>
-    <property name="textDirection">
-     <enum>QProgressBar::TopToBottom</enum>
-    </property>
-    <property name="format">
-     <string>%p%</string>
-    </property>
-   </widget>
+    <item row="4" column="5">
+     <widget class="QLabel" name="label">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>44</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Convert to...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5">
+     <widget class="QComboBox" name="comboBox">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>PNG</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>JPG</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PDF</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Greyscale</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="2" column="0" rowspan="9" colspan="4">
+     <widget class="QListWidget" name="listWidget">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="5">
+     <widget class="QPushButton" name="loadFile">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>&lt; Load File</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5">
+     <widget class="QPushButton" name="loadFolder">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>&lt;&lt; Load Folder</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="5">
+     <widget class="QPushButton" name="convert">
+      <property name="minimumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Convert!</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="removeSelectio">
+      <property name="maximumSize">
+       <size>
+        <width>146</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Remove Selection</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="13" column="0" colspan="4">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>true</bool>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="textDirection">
+       <enum>QProgressBar::TopToBottom</enum>
+      </property>
+      <property name="format">
+       <string>%p%</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="5" rowspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="ItemCount">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>755</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionLoadFolder"/>
-    <addaction name="actionLoad_File"/>
-    <addaction name="separator"/>
-    <addaction name="actionQuit"/>
-   </widget>
-   <addaction name="menuFile"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionLoadFolder">
    <property name="text">
     <string>Load Folder...</string>
@@ -229,41 +253,21 @@
  </widget>
  <layoutdefault spacing="6" margin="9"/>
  <tabstops>
-  <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>textEdit</tabstop>
-  <tabstop>treeWidget</tabstop>
+  <tabstop>loadFolder</tabstop>
+  <tabstop>loadFile</tabstop>
+  <tabstop>listWidget</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>Converty</receiver>
-   <slot>browserFolderSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>662</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>573</x>
-     <y>26</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
+   <sender>loadFile</sender>
    <signal>clicked()</signal>
    <receiver>Converty</receiver>
    <slot>browserFileSlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>640</x>
-     <y>106</y>
+     <x>882</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
      <x>568</x>
@@ -272,34 +276,82 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_4</sender>
-   <signal>clicked()</signal>
-   <receiver>Converty</receiver>
-   <slot>browserFolderSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>631</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>565</x>
-     <y>223</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_3</sender>
+   <sender>convert</sender>
    <signal>clicked()</signal>
    <receiver>Converty</receiver>
    <slot>beginConvert()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>622</x>
-     <y>359</y>
+     <x>904</x>
+     <y>629</y>
     </hint>
     <hint type="destinationlabel">
      <x>681</x>
      <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>setOutput</sender>
+   <signal>clicked()</signal>
+   <receiver>Converty</receiver>
+   <slot>browserSetOutput()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>953</x>
+     <y>598</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>559</x>
+     <y>192</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearList</sender>
+   <signal>clicked()</signal>
+   <receiver>Converty</receiver>
+   <slot>clearList()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>230</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeSelectio</sender>
+   <signal>clicked()</signal>
+   <receiver>Converty</receiver>
+   <slot>clearSelection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>534</x>
+     <y>26</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>658</x>
+     <y>10</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadFolder</sender>
+   <signal>clicked()</signal>
+   <receiver>Converty</receiver>
+   <slot>browserFolderSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>904</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>862</x>
+     <y>10</y>
     </hint>
    </hints>
   </connection>
@@ -308,5 +360,8 @@
   <slot>browserFolderSlot()</slot>
   <slot>browserFileSlot()</slot>
   <slot>beginConvert()</slot>
+  <slot>browserSetOutput()</slot>
+  <slot>clearList()</slot>
+  <slot>clearSelection()</slot>
  </slots>
 </ui>
