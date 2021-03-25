@@ -30,76 +30,20 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QPushButton" name="clearList">
+    <item row="0" column="2">
+     <widget class="QPushButton" name="removeSelectio">
       <property name="maximumSize">
        <size>
-        <width>147</width>
+        <width>146</width>
         <height>25</height>
        </size>
       </property>
       <property name="text">
-       <string>Clear List</string>
+       <string>Remove Selection</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="5">
-     <widget class="QPushButton" name="setOutput">
-      <property name="maximumSize">
-       <size>
-        <width>126</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Set Output Path..</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="5">
-     <widget class="QLabel" name="label">
-      <property name="maximumSize">
-       <size>
-        <width>126</width>
-        <height>44</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Convert to...</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="5">
-     <widget class="QComboBox" name="comboBox">
-      <property name="maximumSize">
-       <size>
-        <width>126</width>
-        <height>25</height>
-       </size>
-      </property>
-      <item>
-       <property name="text">
-        <string>PNG</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>JPG</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>PDF</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Greyscale</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="2" column="0" rowspan="9" colspan="4">
+    <item row="3" column="0" rowspan="11" colspan="4">
      <widget class="QListWidget" name="listWidget">
       <property name="font">
        <font>
@@ -117,7 +61,7 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="5">
+    <item row="5" column="5">
      <widget class="QPushButton" name="loadFile">
       <property name="maximumSize">
        <size>
@@ -125,53 +69,11 @@
         <height>25</height>
        </size>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loads the selected image file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string>&lt; Load File</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="5">
-     <widget class="QPushButton" name="loadFolder">
-      <property name="maximumSize">
-       <size>
-        <width>126</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>&lt;&lt; Load Folder</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="5">
-     <widget class="QPushButton" name="convert">
-      <property name="minimumSize">
-       <size>
-        <width>126</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>126</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Convert!</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="removeSelectio">
-      <property name="maximumSize">
-       <size>
-        <width>146</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Remove Selection</string>
       </property>
      </widget>
     </item>
@@ -191,7 +93,52 @@
       </property>
      </spacer>
     </item>
-    <item row="13" column="0" colspan="4">
+    <item row="11" column="5" rowspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="ItemCount">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="5">
+     <widget class="QPushButton" name="loadFolder">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loads all of the supported content of a folder.&lt;br/&gt;---------&lt;br/&gt;If &amp;quot;Recursive&amp;quot; is enabled, it also loads the contents of all of the child folders within the selected folder.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>&lt;&lt; Load Folder</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="5">
+     <widget class="QPushButton" name="setOutput">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Set Output Path..</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="0" colspan="4">
      <widget class="QProgressBar" name="progressBar">
       <property name="enabled">
        <bool>false</bool>
@@ -216,19 +163,96 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="5" rowspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-     <widget class="QLabel" name="ItemCount">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="clearList">
+      <property name="maximumSize">
+       <size>
+        <width>147</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="text">
-       <string/>
+       <string>Clear List</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+     </widget>
+    </item>
+    <item row="7" column="5" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="label">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>44</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Convert to...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="5">
+     <widget class="QPushButton" name="convert">
+      <property name="minimumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Convert!</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="5" alignment="Qt::AlignHCenter">
+     <widget class="QCheckBox" name="isRecursive">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, &amp;quot;Load Folder&amp;quot; will also load the contents of all the folders within it.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Recursive</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="5">
+     <widget class="QComboBox" name="comboBox">
+      <property name="maximumSize">
+       <size>
+        <width>126</width>
+        <height>25</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>PNG</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>JPG</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PDF</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="9" column="5" alignment="Qt::AlignHCenter">
+     <widget class="QCheckBox" name="isGreyscale">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, Converty will attempt to convert the image into a black and white (Greyscale) version.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Greyscale</string>
       </property>
      </widget>
     </item>
@@ -253,7 +277,6 @@
  </widget>
  <layoutdefault spacing="6" margin="9"/>
  <tabstops>
-  <tabstop>loadFolder</tabstop>
   <tabstop>loadFile</tabstop>
   <tabstop>listWidget</tabstop>
  </tabstops>

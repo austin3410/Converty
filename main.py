@@ -22,7 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.convert_flags = {
             "PNG": {"PIL_FLAG": "RGBA", "EXT": ".png"}, 
             "JPG": {"PIL_FLAG": "RGB", "EXT": ".jpg"}, 
-            "Greyscale": {"PIL_FLAG": "LA", "EXT": "CURRENT"}, 
+            #"Greyscale": {"PIL_FLAG": "LA", "EXT": "CURRENT"}, 
             "PDF": {"PIL_FLAG": "RGB", "EXT": ".pdf"}}
         
         self.support_exts = [".png", ".jpg", ".pdf"]
@@ -68,7 +68,8 @@ QProgressBar::chunk {
 
         if dlg.exec_():
             folderpath = dlg.selectedFiles()[0]
-            self.parse_folder(folderpath, self.m_ui.listWidget)
+            recursive = self.m_ui.isRecursive.isChecked()
+            self.parse_folder(folderpath, self.m_ui.listWidget, recursive)
     
     def browserFileSlot(self):
         dlg = QFileDialog()
@@ -77,7 +78,8 @@ QProgressBar::chunk {
 
         if dlg.exec_():
             filename = dlg.selectedFiles()[0]
-            self.parse_folder(filename, self.m_ui.listWidget)
+            recursive = self.m_ui.isRecursive.isChecked()
+            self.parse_folder(filename, self.m_ui.listWidget, recursive)
     
     def browserSetOutput(self):
         dlg = QFileDialog()
@@ -111,14 +113,16 @@ QProgressBar::chunk {
 
     # Supporting Functions
 
-    def parse_folder(self, folderpath, list):
+    def parse_folder(self, folderpath, list, recursive):
         if os.path.isdir(folderpath):
             for item in os.listdir(folderpath):
-                if os.path.isdir(folderpath + "/" + item):
+                if os.path.isdir(folderpath + "/" + item) and recursive == True:
                     new_folderpath = folderpath + "/" + item
-                    self.parse_folder(new_folderpath, list)
-                else:
+                    self.parse_folder(new_folderpath, list, recursive)
+                elif os.path.isfile(folderpath + "/" + item):
                     self.add_item_to_list(folderpath, list, item)
+                else:
+                    print(item)
         else:
             item = os.path.basename(folderpath)
             folderpath = os.path.dirname(folderpath)
@@ -127,7 +131,7 @@ QProgressBar::chunk {
     
     def add_item_to_list(self, folderpath, list, item):
         filename, file_ext = os.path.splitext(item)
-        if file_ext in self.support_exts:
+        if str(file_ext).lower() in self.support_exts:
             if item:
                 list.addItem(folderpath + "/" + item)
     
@@ -135,6 +139,7 @@ QProgressBar::chunk {
         self.m_ui.progressBar.setStyleSheet(self.DEFAULT_STYLE)
         self.m_ui.progressBar.setValue(0)
         self.m_ui.progressBar.setEnabled(True)
+        greyscale = self.m_ui.isGreyscale.isChecked()
         percent_per_image = floor(100/len(items))
         global error
         error = None
@@ -145,7 +150,7 @@ QProgressBar::chunk {
             self.m_ui.ItemCount.setText(f"{convert_count}/{self.m_ui.listWidget.count()}\nItems Converted")
             try:
                 
-                Convert2(image, convert_to, self.convert_flags, output_path)
+                Convert2(image, convert_to, self.convert_flags, output_path, greyscale)
                 
                 current_progressbar_val = self.m_ui.progressBar.value()
                 self.m_ui.progressBar.setValue(current_progressbar_val + percent_per_image)
