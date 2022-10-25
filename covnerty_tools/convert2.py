@@ -1,7 +1,6 @@
 import os
 from PIL import Image
 import pdf2image
-import shutil
 
 class Convert2:
 
@@ -11,7 +10,6 @@ class Convert2:
         # convert_flags is a dict of dicts of acceptable conversion types.
         # output_path is a str of the out_put selected by the user.
               
-        self.image = image
         self.convert_to = convert_to
         self.convert_flags = convert_flags
         self.output_path = output_path
@@ -22,11 +20,76 @@ class Convert2:
         filename = os.path.basename(image)
         self.filename, self.current_ext = os.path.splitext(filename)
 
-        if self.convert_flags[convert_to]["EXT"] == "CURRENT":
+        if self.current_ext != ".pdf":
+            self.image = Image.open(image)
+        else:
+            self.image = pdf2image.convert_from_path(image, dpi=400, output_folder=None, first_page=None, last_page=None, fmt=".jpg", thread_count=1, userpw=None, use_cropbox=False, strict=False, poppler_path="poppler-0.68.0_x86//bin")
+
+        if self.isGreyscale:
+            if isinstance(self.image, list):
+                for i in range(len(self.image)):
+                    self.image[i] = self.image[i].convert("L")
+            else:
+                self.image = self.image.convert("L")
+        
+        
+        if self.convert_flags[convert_to]["EXT"] == self.current_ext:
+            if isinstance(self.image, list):
+                img1 = self.image[0]
+                img1.save(f"{self.output_path}//{self.filename}.pdf", save_all=True, append_images=self.image[1:])
+            else:
+                self.image.save(f"{self.output_path}//{self.filename}.{self.current_ext}")
+        else:
+            if isinstance(self.image, list):
+                for i in self.image:
+                    new_image = i.convert(convert_flags[convert_to]["PIL_FLAG"])
+                    new_image.save(output_path + f"/{self.filename}{convert_flags[convert_to]['EXT']}")
+            else:
+                new_image = self.image.convert(convert_flags[convert_to]["PIL_FLAG"])
+                new_image.save(output_path + f"/{self.filename}{convert_flags[convert_to]['EXT']}")
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        """if self.convert_flags[convert_to]["EXT"] == "CURRENT":
             self.new_ext = self.current_ext
         else:
             self.new_ext = convert_flags[convert_to]["EXT"]
         
+        if self.isGreyscale:
+            self.image = self.convert_to_jpg_greyscale(self.image, self.filename, self.current_ext)
+
         if convert_to == "JPG":
             if self.current_ext == ".pdf":
                 pil_images = self.pdftopil(self.image, ".jpg")
@@ -37,10 +100,18 @@ class Convert2:
                 self.convert_to_jpg(self.image, self.filename, self.convert_flags, self.convert_to, self.output_path, self.new_ext, self.isGreyscale)
         
         elif convert_to == "PNG":
-            print(convert_to)
+            if self.current_ext == ".pdf":
+                pil_images = self.pdftopil(self.image, ".png")
+
+                for i in pil_images:
+                    i.save(self.output_path + f"/{filename}.png")  
+            else:
+                self.convert_to_png(self.image, self.filename, self.convert_flags, self.convert_to, self.output_path, self.new_ext, self.isGreyscale)
         
         elif convert_to == "PDF":
             self.convert_to_pdf(self.image, self.filename, self.convert_flags, self.convert_to, self.output_path, self.new_ext, self.current_ext, self.isGreyscale)
+    
+    
     
     def pdftopil(self, image, fmt):
         pil_images = pdf2image.convert_from_path(image, dpi=400, output_folder=None, first_page=None, last_page=None, fmt=fmt, thread_count=1, userpw=None, use_cropbox=False, strict=False, poppler_path="poppler-0.68.0_x86//bin")
@@ -49,7 +120,22 @@ class Convert2:
     def copy_image(image, output_path):
         shutil.copy(image, output_path)
     
+    def convert_to_greyscale(self, image, filename, current_ext):
+        if current_ext != ".pdf":
+            grey_image = Image.open(rf"{image}").convert("L")
+
+            return image
+        
+
+
     def convert_to_jpg(self, image, filename, convert_flags, convert_to, output_path, new_ext, isGreyscale):
+        if isGreyscale:
+            new_image = Image.open(rf"{image}").convert("L")
+        else:
+            new_image = Image.open(rf"{image}").convert(convert_flags[convert_to]["PIL_FLAG"])
+        new_image.save(output_path + f"/{filename}{new_ext}")
+    
+    def convert_to_png(self, image, filename, convert_flags, convert_to, output_path, new_ext, isGreyscale):
         if isGreyscale:
             new_image = Image.open(rf"{image}").convert("L")
         else:
@@ -58,10 +144,16 @@ class Convert2:
     
     def convert_to_pdf(self, image, filename, convert_flags, convert_to, output_path, new_ext, current_ext, isGreyscale):
         if current_ext != ".pdf":
-            new_image = Image.open(rf"{image}").convert(convert_flags[convert_to]["PIL_FLAG"])
+            if isGreyscale:
+                new_image = Image.open(rf"{image}").convert("L")
+                new_image = Image.open(rf"{image}").convert(convert_flags[convert_to]["PIL_FLAG"])
+            else:
+                new_image = Image.open(rf"{image}").convert(convert_flags[convert_to]["PIL_FLAG"])
             new_image.save(output_path + f"/{filename}{new_ext}")
         else:
-            self.copy_image(image, output_path)
+            if isGreyscale:
+                new_image = Image.open(rf"{image}").convert("RGB").convert("L")
+            self.copy_image(new_image, output_path)"""
 
 
         

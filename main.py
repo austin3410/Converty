@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import *
 import os
 from PIL import Image
 from math import floor
-import pdf2image
 
 import ui.mainwindow as Ui_MainWindow
 from covnerty_tools.convert2 import Convert2
@@ -104,12 +103,14 @@ QProgressBar::chunk {
     
     def clearList(self):
         self.m_ui.listWidget.clear()
+        self.m_ui.ItemCount.setText(f"{self.m_ui.listWidget.count()} Items")
     
     def clearSelection(self):
         selected = self.m_ui.listWidget.selectedItems()
         if not selected: return
         for item in selected:
             self.m_ui.listWidget.takeItem(self.m_ui.listWidget.row(item))
+            self.m_ui.ItemCount.setText(f"{self.m_ui.listWidget.count()} Items")
 
     # Supporting Functions
 
@@ -122,7 +123,8 @@ QProgressBar::chunk {
                 elif os.path.isfile(folderpath + "/" + item):
                     self.add_item_to_list(folderpath, list, item)
                 else:
-                    print(item)
+                    #print(item)
+                    pass
         else:
             item = os.path.basename(folderpath)
             folderpath = os.path.dirname(folderpath)
@@ -134,6 +136,7 @@ QProgressBar::chunk {
         if str(file_ext).lower() in self.support_exts:
             if item:
                 list.addItem(folderpath + "/" + item)
+                self.m_ui.ItemCount.setText(f"{list.count()} Items")
     
     def convert_images(self, items, convert_to, output_path):
         self.m_ui.progressBar.setStyleSheet(self.DEFAULT_STYLE)
@@ -143,18 +146,16 @@ QProgressBar::chunk {
         percent_per_image = floor(100/len(items))
         global error
         error = None
-        convert_count = 0
-        
+        self.convert_count = 0
 
         for image in items:
-            self.m_ui.ItemCount.setText(f"{convert_count}/{self.m_ui.listWidget.count()}\nItems Converted")
+            self.m_ui.ItemCount.setText(f"{self.convert_count}/{self.m_ui.listWidget.count()}\nItems Converted")
             try:
-                
                 Convert2(image, convert_to, self.convert_flags, output_path, greyscale)
-                
+
                 current_progressbar_val = self.m_ui.progressBar.value()
                 self.m_ui.progressBar.setValue(current_progressbar_val + percent_per_image)
-                convert_count += 1
+                self.convert_count += 1
 
             
             except Exception as e:
@@ -163,8 +164,9 @@ QProgressBar::chunk {
                 msg = "Something went wrong!\n"\
                     f"Couldn't convert\n{image}\n to {convert_to}!"
                 self.popup_msg("Error", msg, "ERROR")
-        
-        self.m_ui.ItemCount.setText(f"{convert_count}/{self.m_ui.listWidget.count()}\nItems Converted")
+
+
+        self.m_ui.ItemCount.setText(f"{self.convert_count}/{self.m_ui.listWidget.count()}\nItems Converted")
         if error == None:
             self.m_ui.progressBar.setValue(100)
             self.m_ui.progressBar.setStyleSheet(self.SUCCESS_STYLE)

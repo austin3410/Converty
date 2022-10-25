@@ -118,6 +118,7 @@ class Ui_Converty(object):
     def retranslateUi(self, Converty):
         _translate = QtCore.QCoreApplication.translate
         Converty.setWindowTitle(_translate("Converty", "Converty"))
+        Converty.setWindowIcon(QtGui.QIcon("logo4.ico"))
         self.removeSelectio.setText(_translate("Converty", "Remove Selection"))
         self.listWidget.setSortingEnabled(True)
         self.loadFile.setToolTip(_translate("Converty", "<html><head/><body><p>Loads the selected image file.</p></body></html>"))
